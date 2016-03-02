@@ -2,10 +2,11 @@
 A small library to create a js skeleton object from a reference object.
 
 ##Usage
+```javascript
 var skeletonObjectCreator = require('skeletonObjectCreator.js')
-
-####Example reference object,
-
+```
+#####Example reference object,
+```javascript
 var referenceProduct = {
     "id": 2,
     "name": "An ice sculpture",
@@ -21,6 +22,7 @@ var referenceProduct = {
         "longitude": 20.4
     }
 }
+```
 
 ##Methods
 ###1. create
@@ -31,7 +33,7 @@ var referenceProduct = {
 
 ####Returns
 	Returns one level deep skeleton object.
-
+```javascript
     var newSkeletonProduct = skeletonObjectCreator.create(referenceProduct);
 
     //newSkeletonProduct
@@ -43,6 +45,7 @@ var referenceProduct = {
         "dimensions": undefined,
         "warehouseLocation": undefined
     }
+```
 
 ###2. createWith
 	Creates one level deep skeleton object with the default values and other values as undefined.
@@ -53,8 +56,9 @@ var referenceProduct = {
 
 ####Returns
 	Returns one level deep skeleton object with the default values.
-
-    var newSkeletonProduct = skeletonObjectCreator.createWith(referenceProduct,{"name":"A blue mouse", "tags":["blue","mouse"]});
+```javascript
+    var newSkeletonProduct = skeletonObjectCreator
+    					.createWith(referenceProduct,{"name":"A blue mouse", "tags":["blue","mouse"]});
 
     //newSkeletonProduct
     {
@@ -65,7 +69,7 @@ var referenceProduct = {
         "dimensions": undefined,
         "warehouseLocation": undefined
     }
-
+```
 ###3. createDeep
 	Creates nested skeleton object with values as undefined.
 
@@ -74,7 +78,7 @@ var referenceProduct = {
 
 ####Returns
 	Returns nested skeleton object.
-
+```javascript
     var newSkeletonProduct = skeletonObjectCreator.createDeep(referenceProduct);
 
     //newSkeletonProduct
@@ -93,7 +97,7 @@ var referenceProduct = {
             "longitude": undefined
         }
     }
-
+```
 ###4. createDeepWith
 	Creates nested skeleton object with the default values and other values as undefined. 
 
@@ -103,9 +107,9 @@ var referenceProduct = {
 
 ####Returns
 	Returns nested skeleton object with the default values.
-
-    var newSkeletonProduct = skeletonObjectCreator.createDeep(referenceProduct,{"name":"A blue mouse", "latitude": -78.75,
-            "longitude": 20.4});
+```javascript
+    var newSkeletonProduct = skeletonObjectCreator
+    				.createDeep(referenceProduct,{"name":"A blue mouse", "latitude": -78.75,"longitude": 20.4});
 
     //newSkeletonProduct
     {
@@ -123,3 +127,4 @@ var referenceProduct = {
             "longitude": 20.4
         }
     }
+```
