@@ -1,37 +1,49 @@
-
-n createObject(templateObject, isDeepCopy, defaultValues) {
+function createObject(referenceObject, defaultValues) {
     var newObject = {};
-    for (var property in templateObject) {
-        var isObject = templateObject[property] instanceof Object;
-        var isArray = templateObject[property] instanceof Array;
-        var defaultValue = defaultValues && defaultValues[property];
-        if (isArray) {
-            var newObjArray = [];
-            templateObject[property].forEach(function (obj) {
-                newObjArray.push(createObject(obj, isDeepCopy, defaultValues));
-            });
-            newObject[property] = newObjArray;
+    for (var property in referenceObject) {
+        newObject[property] = defaultValues && defaultValues[property];
+    }
+    return newObject;
+}
+
+function createDeepObject(referenceObject, defaultValues) {
+    var newObject = {};
+    for (var property in referenceObject) {
+        var isObject=referenceObject[property] instanceof Object;
+        var isArray=referenceObject[property] instanceof Array;
+        if(isArray){
+            if(referenceObject[property][0] instanceof Object){
+                var newArray=[];
+                referenceObject[property].foreach(function(object){
+                    newArray.push(createDeepObject(object, defaultValues));    
+                });
+                return newArray;
+            }
+            else{
+                newObject[property] = defaultValues && defaultValues[property]; 
+            }
         }
-        else if(defaultValue) {
-            newObject[property] = defaultValue;
+        else if (isObject) {
+            newObject[property] = createDeepObject(referenceObject[property], defaultValues);
         }
-        else if (isDeepCopy && isObject) {
-            newObject[property] = createObject(templateObject[property], isDeepCopy, defaultValues);
+        else{
+            newObject[property] = defaultValues && defaultValues[property];    
         }
     }
     return newObject;
 }
+
 module.exports = {
-    create: function (referenceObject) {
+    create: function(referenceObject) {
         return createObject(referenceObject);
     },
-    createDeep: function (referenceObject) {
-        return createObject(referenceObject, true);
+    createWith: function(referenceObject, defaultValues) {
+        return createObject(referenceObject, defaultValues);
     },
-    createWith: function (referenceObject, defaultValues) {
-        return createObject(referenceObject, false, defaultValues);
+    createDeep: function(referenceObject) {
+        return createDeepObject(referenceObject);
     },
-    createDeepWith: function (referenceObject, defaultValues) {
-        return createObject(referenceObject, true, defaultValues);
+    createDeepWith: function(referenceObject, defaultValues) {
+        return createDeepObject(referenceObject, defaultValues);
     }
 };

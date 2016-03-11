@@ -107,9 +107,9 @@ var referenceProduct = {
 
 ####Returns
 	Returns nested skeleton object with the default values.
-```javascript
-    var newSkeletonProduct = skeletonObjectCreator
-    				.createDeep(referenceProduct,{"name":"A blue mouse", "latitude": -78.75,"longitude": 20.4});
+
+    var newSkeletonProduct = skeletonObjectCreator.createDeepWith(referenceProduct,{"name":"A blue mouse", "latitude": -78.75,
+            "longitude": 20.4});
 
     //newSkeletonProduct
     {
