@@ -91,6 +91,23 @@ describe("skeletonObjectCreator.js", function() {
 				"longitude": 20.4
 			});
 			expect(newSkeletonObject).toEqual(expectedObject);
-		})
+		});
+		it("should create a nested skelton object with array of object", function() {
+			referenceProduct = {
+				"id": 2,
+				"name": "An ice sculpture",
+				"price": 12.50,
+				"tags": [{name: "cold", type: "fiction"}, {name: "ice", type: "fiction"}]
+			}
+			var expectedObject = {
+				"id": 2,
+				"name": undefined,
+				"price": undefined,
+				"tags": [{name: undefined, type: "fiction"}, {name: undefined,type: "fiction"}]
+			}
+
+			var newSkeletonObject = skeletonObjectCreator.createDeepWith(referenceProduct,{id: 2,type: "fiction"});
+			expect(newSkeletonObject).toEqual(expectedObject);
+		});
 	})
 })

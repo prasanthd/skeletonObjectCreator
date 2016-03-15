@@ -14,10 +14,11 @@ function createDeepObject(referenceObject, defaultValues) {
         if(isArray){
             if(referenceObject[property][0] instanceof Object){
                 var newArray=[];
-                referenceObject[property].foreach(function(object){
-                    newArray.push(createDeepObject(object, defaultValues));    
-                });
-                return newArray;
+                var arrayOfObject=referenceObject[property];
+                for(index in arrayOfObject){
+                    newArray.push(createDeepObject(arrayOfObject[index], defaultValues));    
+                }
+                 newObject[property] = newArray;
             }
             else{
                 newObject[property] = defaultValues && defaultValues[property]; 
