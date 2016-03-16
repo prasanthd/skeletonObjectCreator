@@ -75,19 +75,15 @@ describe("skeletonObjectCreator.js", function() {
 				"name": "A blue mouse",
 				"price": undefined,
 				"tags": undefined,
-				"dimensions": {
-					"length": undefined,
-					"width": undefined,
-					"height": undefined
-				},
+				"dimensions": {},
 				"warehouseLocation": {
-					"latitude": -78.75,
+					"latitude": undefined,
 					"longitude": 20.4
 				}
 			}
 			var newSkeletonObject = skeletonObjectCreator.createDeepWith(referenceProduct, {
 				"name": "A blue mouse",
-				"latitude": -78.75,
+				"dimensions": {},
 				"longitude": 20.4
 			});
 			expect(newSkeletonObject).toEqual(expectedObject);
