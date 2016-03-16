@@ -1,9 +1,12 @@
 # skeletonObjectCreator
-A small library to create a js skeleton object from a reference object.
+
+A small library to create a js skeleton object from a given reference object.
+
+In client-side view-models, we generally maintain a method to construct a dummy object with default values. Using this library you can get rid of that methods. 
 
 ##Usage
 ```javascript
-var skeletonObjectCreator = require('skeletonObjectCreator.js')
+var skeletonObjectCreator = require('skeletonObjectCreator.js');
 ```
 #####Example reference object,
 ```javascript
@@ -12,7 +15,7 @@ var referenceProduct = {
     "name": "An ice sculpture",
     "price": 12.50,
     "tags": ["cold", "ice"],
-    "dimensions": {
+    "dimensions": {	
         "length": 7.0,
         "width": 12.0,
         "height": 9.5
@@ -107,10 +110,12 @@ var referenceProduct = {
 
 ####Returns
 	Returns nested skeleton object with the default values.
-
+```javascript
     var newSkeletonProduct = skeletonObjectCreator.createDeepWith(referenceProduct,{"name":"A blue mouse", "latitude": -78.75,
             "longitude": 20.4});
+```
 
+```javascript
     //newSkeletonProduct
     {
         "id": undefined,
